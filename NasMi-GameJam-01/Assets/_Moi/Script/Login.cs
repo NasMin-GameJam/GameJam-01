@@ -11,14 +11,19 @@ namespace moi.authentication
 {
     public class Login : MonoBehaviour
     {
-        public TextMeshProUGUI RegisterUser;
-        public TextMeshProUGUI RegisterEmail;
-        public TextMeshProUGUI RegisterPassword;
+        public TMP_InputField RegisterUser;
+        public TMP_InputField RegisterEmail;
+        public TMP_InputField RegisterPassword;
 
-        public TextMeshProUGUI LoginUser;
-        public TextMeshProUGUI LoginPassword;
+        public TMP_InputField LoginUser;
+        public TMP_InputField LoginPassword;
+
+        public bool IsAuthenticated = false;
 
         public string _playFabPlayerIdCache;
+
+        public GameObject ConnectedPanel;
+        public GameObject ErrorPanel;
 
         public void CreateAccount()
         {
@@ -28,10 +33,14 @@ namespace moi.authentication
             request.Password = RegisterPassword.text;
             PlayFabClientAPI.RegisterPlayFabUser(request, result =>
              {
-
+                 IsAuthenticated = true;
+                 Debug.Log("You are now logged in");
+                 ConnectedPanel.SetActive(true);
              }, error => {
-
-             });
+                 IsAuthenticated = false;
+                 Debug.Log(error.ErrorMessage);
+                 ErrorPanel.SetActive(true);
+             },null);
         }
 
         public void LoginAccount()
@@ -76,6 +85,7 @@ namespace moi.authentication
         void OnPlayFabError(PlayFabError obj)
         {
             Debug.LogError(obj.GenerateErrorReport());
+            ErrorPanel.SetActive(true);
         }
 
         public void LogMessage(string message)
