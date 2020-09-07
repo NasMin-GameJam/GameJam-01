@@ -3244,7 +3244,7 @@ GameObject:
   - component: {fileID: 1191676292}
   - component: {fileID: 1191676293}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: PlayFab Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
