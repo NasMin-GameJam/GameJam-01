@@ -1,5 +1,5 @@
 # GameJam-01
-PlayFab + Photon 
+PlayFab + Photon PUN 2
 
 A GameJam to learn about PlayFab, Photon, and GitHub.
 
