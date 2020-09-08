@@ -7,7 +7,8 @@ A GameJam to learn about PlayFab, Photon, and GitHub.
 2. Photon's multiplayer solution
 3. GitHub collaborate between developers
 
-======================================================
+//======================================================//
+
 A Signup and Login system
 
 Can be found in _Moi folder
