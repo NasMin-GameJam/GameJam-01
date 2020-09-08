@@ -79,7 +79,8 @@ namespace moi.photonConnection
             // Use this authentication parameter throughout the entire application
             PhotonNetwork.AuthValues = customAuth;
 
-            PhotonNetwork.ConnectUsingSettings();
+            // We're separating connecting to Photon to Photon_Manager.cs
+            //PhotonNetwork.ConnectUsingSettings();
 
             ConnectedPanel.SetActive(true);
         }
