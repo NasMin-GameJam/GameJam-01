@@ -5,7 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 
-namespace moi.authentication
+namespace moi.photonConnection
 {
     public class Login : MonoBehaviour
     {
@@ -22,6 +22,8 @@ namespace moi.authentication
 
         public GameObject ConnectedPanel;
         public GameObject ErrorPanel;
+
+        public TextMeshProUGUI ErrorText;
 
         public void CreateAccount()
         {
@@ -78,6 +80,8 @@ namespace moi.authentication
             PhotonNetwork.AuthValues = customAuth;
 
             PhotonNetwork.ConnectUsingSettings();
+
+            ConnectedPanel.SetActive(true);
         }
 
         void OnPlayFabError(PlayFabError obj)
@@ -89,6 +93,7 @@ namespace moi.authentication
         public void LogMessage(string message)
         {
             Debug.Log("PlayFab + Photon _Moi : " + message);
+            ErrorText.SetText("PlayFab + Photon _Moi : " + message);
         }
     }
 }
