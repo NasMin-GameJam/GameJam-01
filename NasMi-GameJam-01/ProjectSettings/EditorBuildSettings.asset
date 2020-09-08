@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/_Moi/01_PlayFab Authentication/Scene/01_PlayFab Authentication.unity
     guid: 701fe0c3238f31c4aa3b7e317699cf9c
   - enabled: 1
-    path: Assets/_Moi/02_Photon Connection/Scene/02_Photon Connection.unity
+    path: Assets/_Moi/02_Photon Authentication/Scene/02_Photon Connection.unity
     guid: 0ae24dfe45aa64a69b652c1cafbc2242
   m_configObjects: {}
