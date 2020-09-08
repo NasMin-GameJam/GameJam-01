@@ -14,6 +14,8 @@ namespace moi.photonLobby
 
         public TextMeshProUGUI errorText;
 
+        public GameObject lobbyCanvas;
+
         string GameVersion = "0.0.0";
 
         public void Connect()
@@ -53,7 +55,10 @@ namespace moi.photonLobby
 
         public override void OnJoinedRoom()
         {
+            lobbyCanvas.SetActive(false);
+
             LogMessage("Joined Room");
+            //PhotonNetwork.Instantiate("player", Vector3.zero, Quaternion.identity, 0);
         }
     }
 }
