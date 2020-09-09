@@ -25,9 +25,21 @@ namespace moi.photonLobby
         public GameObject roomListingPrefab;
         public Transform roomsPanel;
 
-        [Header("Connected Room")]
+        public List<RoomInfo> roomListings;
+
+        [Header("Connected Room Panel")]
         public GameObject JoinedRoomPanel;
         public TextMeshProUGUI CreateOrJoinedText;
+
+        [Header("Current Room Info")]
+        public string curRoomName;
+        public int curPlayerSize;
+        public int maxPlayerSize;
+
+        void Start()
+        {
+            roomListings = new List<RoomInfo>();
+        }
 
         public void CreateRoom()
         {
@@ -65,6 +77,12 @@ namespace moi.photonLobby
 
             roomName_String = roomName.text;
             roomSize_Int = maxNum;
+
+            if (string.IsNullOrEmpty(roomName_String))
+            {
+                Photon_Manager.LogMessage("Room name is empty");
+                return;
+            }
         }
 
         public override void OnCreateRoomFailed(short returnCode, string message)
@@ -78,6 +96,10 @@ namespace moi.photonLobby
         {
             PhotonNetwork.LeaveRoom();
         }
+
+        // Debugging
+        [Header("Debugging")]
+        public Photon_RoomCustomMatch roomInfo;
 
         public override void OnJoinedRoom()
         {
@@ -97,6 +119,8 @@ namespace moi.photonLobby
             {
                 CreateOrJoinedText.SetText("You created a room. \n Room name is : " + roomName_String);
             }
+
+            roomInfo.RoomInfos();
         }
 
         #region Update Room
@@ -104,19 +128,48 @@ namespace moi.photonLobby
         // All we need to is to make sure that we are in lobby
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
         {
-            RemoveRoomListings();
+            //RemoveRoomListings();
+            int tempIndex;
             foreach (RoomInfo room in roomList)
             {
-                ListRoom(room);
+                if(roomListings != null)
+                {
+                    tempIndex = roomListings.FindIndex(ByName(room.Name));
+                }
+                else
+                {
+                    tempIndex = -1;
+                }
+
+                if(tempIndex != -1)
+                {
+                    roomListings.RemoveAt(tempIndex);
+                    Destroy(roomsPanel.GetChild(tempIndex).gameObject);
+                }
+                else
+                {
+                    roomListings.Add(room);
+                    ListRoom(room);
+                }
             }
+        }
+
+        static System.Predicate<RoomInfo> ByName(string name)
+        {
+            return delegate (RoomInfo room)
+            {
+                return room.Name == name;
+            };
         }
 
         // Remove all the room. While the childcount is 0, continue destroy until not 0
         void RemoveRoomListings()
         {
+            int i = 0;
             while(roomsPanel.childCount != 0)
             {
-                Destroy(roomsPanel.GetChild(0).gameObject);
+                Destroy(roomsPanel.GetChild(i).gameObject);
+                i++;
             }
         }
 

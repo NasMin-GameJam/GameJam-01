@@ -5718,6 +5718,10 @@ MonoBehaviour:
   roomsPanel: {fileID: 318295102}
   JoinedRoomPanel: {fileID: 1924892973}
   CreateOrJoinedText: {fileID: 1363563370}
+  curRoomName: 
+  curPlayerSize: 0
+  maxPlayerSize: 0
+  roomInfo: {fileID: 0}
 --- !u!1 &1054374621
 GameObject:
   m_ObjectHideFlags: 0
@@ -6170,6 +6174,7 @@ MonoBehaviour:
   ConnectedPanel: {fileID: 461449658}
   ErrorPanel: {fileID: 1569937585}
   ErrorText: {fileID: 1334319459}
+  playerName: 
 --- !u!1 &1334319457
 GameObject:
   m_ObjectHideFlags: 0
@@ -7065,6 +7070,7 @@ Transform:
   - {fileID: 1413469717}
   - {fileID: 137053863}
   - {fileID: 1027427091}
+  - {fileID: 1685213733}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7157,6 +7163,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640213046}
   m_CullTransparentMesh: 0
+--- !u!1 &1685213732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1685213733}
+  - component: {fileID: 1685213734}
+  m_Layer: 0
+  m_Name: Debugging
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1685213733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685213732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1616625259}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1685213734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685213732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dbf0e408f0dd46c3867d03c9dcca481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  isVisible: 0
+  roomName: 
+  curPlayerCount: 0
+  maxPlayerCount: 0
+  roomProperties: 
 --- !u!1 &1692400191
 GameObject:
   m_ObjectHideFlags: 0
