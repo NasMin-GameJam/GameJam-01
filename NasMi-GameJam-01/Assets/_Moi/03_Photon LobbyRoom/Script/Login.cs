@@ -65,6 +65,8 @@ namespace moi.photonLobby
 
             _playFabPlayerIdCache = obj.PlayFabId;
 
+            //PhotonNetwork.NickName = obj.play
+
             PlayFabClientAPI.GetPhotonAuthenticationToken(new GetPhotonAuthenticationTokenRequest()
             {
                 PhotonApplicationId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime
@@ -93,6 +95,18 @@ namespace moi.photonLobby
             LoginButton.interactable = false;
 
             ConnectedPanel.SetActive(true);
+        }
+
+        void GetPlayerName()
+        {
+            PlayFabClientAPI.GetPlayerProfile(new GetPlayerProfileRequest()
+            {
+                PlayFabId = _playFabPlayerIdCache
+            }, Res => {
+                PhotonNetwork.NickName = Res.PlayerProfile.DisplayName;
+            }, Err => {
+                Debug.Log(Err.GenerateErrorReport());
+            });
         }
 
         void OnPlayFabError(PlayFabError obj)
