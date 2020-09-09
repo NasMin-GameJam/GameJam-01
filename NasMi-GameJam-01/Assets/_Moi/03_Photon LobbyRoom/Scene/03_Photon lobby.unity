@@ -5721,7 +5721,7 @@ MonoBehaviour:
   curRoomName: 
   curPlayerSize: 0
   maxPlayerSize: 0
-  roomInfo: {fileID: 0}
+  roomInfo: {fileID: 1685213734}
 --- !u!1 &1054374621
 GameObject:
   m_ObjectHideFlags: 0
