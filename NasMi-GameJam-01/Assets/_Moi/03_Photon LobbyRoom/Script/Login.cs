@@ -95,6 +95,8 @@ namespace moi.photonLobby
             LoginButton.interactable = false;
 
             ConnectedPanel.SetActive(true);
+
+            GetPlayerName();
         }
 
         void GetPlayerName()
