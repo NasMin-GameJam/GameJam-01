@@ -9,6 +9,9 @@ A GameJam to learn about PlayFab, Photon, and GitHub.
 
 //======================================================//
 
-A Signup and Login system
+A lobby system
+1. Usually where player wait before the game start.
+2. A place where players can chat with each other.
+3. A place where players can search for rooms/game too
 
 Can be found in _Moi folder
