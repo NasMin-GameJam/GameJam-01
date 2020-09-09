@@ -29,6 +29,10 @@ namespace moi.photonLobby
 
         public TextMeshProUGUI ErrorText;
 
+        [Header("Debugging")]
+        [SerializeField]
+        string playerName;
+
         public void CreateAccount()
         {
             RegisterButton.interactable = false;
@@ -106,6 +110,10 @@ namespace moi.photonLobby
                 PlayFabId = _playFabPlayerIdCache
             }, Res => {
                 PhotonNetwork.NickName = Res.PlayerProfile.DisplayName;
+                Debug.Log("PhotonNetwork Nickname : " + PhotonNetwork
+                    .NickName);
+                Debug.Log("PlayFab Display Name : " + Res.PlayerProfile.DisplayName);
+                playerName = Res.PlayerProfile.DisplayName;
             }, Err => {
                 Debug.Log(Err.GenerateErrorReport());
             });
