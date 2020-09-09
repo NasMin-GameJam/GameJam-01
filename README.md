@@ -14,4 +14,7 @@ A lobby system
 2. A place where players can chat with each other.
 3. A place where players can search for rooms/game too
 
-Can be found in _Moi folder
+This contain Automatic Matchmaking and Custom Matchmaking
+1. Currently making Custom Matchmaking
+
+Can project file be found in _Moi folder/03_Photon_Lobby
