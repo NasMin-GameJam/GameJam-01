@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class Photon_RoomCustomMatch : MonoBehaviourPunCallbacks
 {
@@ -26,5 +27,17 @@ public class Photon_RoomCustomMatch : MonoBehaviourPunCallbacks
             maxPlayerCount = PhotonNetwork.CurrentRoom.MaxPlayers;
             roomProperties = PhotonNetwork.CurrentRoom.ToStringFull();
         }
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        RoomInfos();
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        RoomInfos();
     }
 }
