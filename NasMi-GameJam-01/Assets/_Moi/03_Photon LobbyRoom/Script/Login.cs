@@ -4,6 +4,7 @@ using PlayFab.ClientModels;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine.UI;
 
 namespace moi.photonLobby
 {
@@ -20,6 +21,9 @@ namespace moi.photonLobby
 
         public string _playFabPlayerIdCache;
 
+        public GameObject LoginPanel;
+        public Button LoginButton;
+        public Button RegisterButton;
         public GameObject ConnectedPanel;
         public GameObject ErrorPanel;
 
@@ -27,6 +31,7 @@ namespace moi.photonLobby
 
         public void CreateAccount()
         {
+            RegisterButton.interactable = false;
             RegisterPlayFabUserRequest request = new RegisterPlayFabUserRequest();
             request.Username = RegisterUser.text;
             request.Email = RegisterEmail.text;
@@ -36,10 +41,12 @@ namespace moi.photonLobby
                  IsAuthenticated = true;
                  LogMessage("You are now logged in");
                  ConnectedPanel.SetActive(true);
+                 RegisterButton.interactable = false;
              }, error => {
                  IsAuthenticated = false;
                  Debug.Log(error.ErrorMessage);
                  ErrorPanel.SetActive(true);
+                 RegisterButton.interactable = true;
              },null);
         }
 
@@ -49,6 +56,7 @@ namespace moi.photonLobby
             request.Username = LoginUser.text;
             request.Password = LoginPassword.text;
             PlayFabClientAPI.LoginWithPlayFab(request, RequestPhotonToken, OnPlayFabError);
+            LoginButton.interactable = false;
         }
 
         public void RequestPhotonToken(LoginResult obj)
@@ -81,6 +89,8 @@ namespace moi.photonLobby
 
             // We're separating connecting to Photon to Photon_Manager.cs
             //PhotonNetwork.ConnectUsingSettings();
+            LoginPanel.SetActive(false);
+            LoginButton.interactable = false;
 
             ConnectedPanel.SetActive(true);
         }
@@ -89,6 +99,7 @@ namespace moi.photonLobby
         {
             Debug.LogError(obj.GenerateErrorReport());
             ErrorPanel.SetActive(true);
+            LoginButton.interactable = true;
         }
 
         public void LogMessage(string message)

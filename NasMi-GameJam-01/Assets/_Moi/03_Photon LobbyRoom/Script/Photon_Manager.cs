@@ -17,16 +17,6 @@ namespace moi.photonLobby
 
         public TextMeshProUGUI errorText;
 
-        public GameObject lobbyCanvas;
-
-        [Header("Room Options")]
-        public TMP_InputField roomName;
-        public Toggle isPublic;
-        public TMP_InputField maxPlayer;
-
-        int maxNum;
-
-
         string GameVersion = "0.0.0";
 
         // Connect to Photon Server
@@ -47,6 +37,9 @@ namespace moi.photonLobby
             ConnectedPhotonPanel.SetActive(true);
 
             btnConnectPhoton.interactable = false;
+
+            // Join the lobby
+            PhotonNetwork.JoinLobby(TypedLobby.Default);
         }
 
         // If we're disconnected, what is the cause?
@@ -60,7 +53,7 @@ namespace moi.photonLobby
         }
 
         // Custom debug message so we know it come from us.
-        public void LogMessage(string message)
+        public static void LogMessage(string message)
         {
             Debug.Log("Photon + PlayFab _Moi : " + message);
         }
@@ -77,52 +70,6 @@ namespace moi.photonLobby
         public override void OnLeftLobby()
         {
             LogMessage("Left Lobby");
-        }
-
-        public void CreateRoom()
-        {
-            validateRoomOptions();
-
-            int randomRoomName = Random.Range(0, 10000);
-
-            PhotonNetwork.JoinOrCreateRoom(""+ randomRoomName ,new RoomOptions { IsOpen = isPublic, IsVisible = true, MaxPlayers = (byte)maxNum }, TypedLobby.Default);
-        }
-
-        public override void OnJoinedRoom()
-        {
-            lobbyCanvas.SetActive(false);
-
-            LogMessage("Joined Room. " + roomName.text);
-            //PhotonNetwork.Instantiate("player", Vector3.zero, Quaternion.identity, 0);
-        }
-
-        public void validateRoomOptions () {
-            maxNum = int.Parse(maxPlayer.text);
-            if(maxNum > 10)
-            {
-                maxNum = 10;
-                maxPlayer.text = "10";
-            }else if(maxNum < 0)
-            {
-                maxNum = 0;
-                maxPlayer.text = "0";
-            }
-        }
-
-        public override void OnCreateRoomFailed(short returnCode, string message)
-        {
-            LogMessage("Tried to create new but failed");
-            LogMessage(message);
-        }
-
-        public void OnCancelButtonClicked()
-        {
-            PhotonNetwork.LeaveRoom();
-        }
-
-        public override void OnPlayerEnteredRoom(Player newPlayer)
-        {
-            base.OnPlayerEnteredRoom(newPlayer);
         }
     }
 }
