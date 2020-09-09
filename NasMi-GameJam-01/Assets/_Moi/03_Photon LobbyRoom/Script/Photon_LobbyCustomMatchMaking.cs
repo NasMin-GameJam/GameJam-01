@@ -17,7 +17,7 @@ namespace moi.photonLobby
         public TMP_InputField roomName;
         public Toggle isPublic;
         public TMP_InputField maxPlayer;
-        int maxNum = 2;
+        int maxNum = 4;
 
         [Header("Rooms")]
         public string roomName_String;
@@ -31,10 +31,7 @@ namespace moi.photonLobby
         public GameObject JoinedRoomPanel;
         public TextMeshProUGUI CreateOrJoinedText;
 
-        [Header("Current Room Info")]
-        public string curRoomName;
-        public int curPlayerSize;
-        public int maxPlayerSize;
+        public Photon_RoomCustomMatch debugging;
 
         void Start()
         {
@@ -97,10 +94,6 @@ namespace moi.photonLobby
             PhotonNetwork.LeaveRoom();
         }
 
-        // Debugging
-        [Header("Debugging")]
-        public Photon_RoomCustomMatch roomInfo;
-
         public override void OnJoinedRoom()
         {
             lobbyCanvas.SetActive(false);
@@ -119,8 +112,9 @@ namespace moi.photonLobby
             {
                 CreateOrJoinedText.SetText("You created a room. \n Room name is : " + roomName_String);
             }
-
-            roomInfo.RoomInfos();
+    
+            Debug.Log("You are number " + PhotonNetwork.LocalPlayer.ActorNumber);
+            //debugging.RoomInfos();
         }
 
         #region Update Room
