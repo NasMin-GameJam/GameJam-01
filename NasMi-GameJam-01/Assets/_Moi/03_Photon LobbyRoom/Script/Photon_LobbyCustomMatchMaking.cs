@@ -17,13 +17,17 @@ namespace moi.photonLobby
         public TMP_InputField roomName;
         public Toggle isPublic;
         public TMP_InputField maxPlayer;
-        int maxNum;
+        int maxNum = 2;
 
         [Header("Rooms")]
         public string roomName_String;
         public int roomSize_Int;
         public GameObject roomListingPrefab;
         public Transform roomsPanel;
+
+        [Header("Connected Room")]
+        public GameObject JoinedRoomPanel;
+        public TextMeshProUGUI CreateOrJoinedText;
 
         public void CreateRoom()
         {
@@ -36,7 +40,7 @@ namespace moi.photonLobby
                 MaxPlayers = (byte)roomSize_Int
             };
 
-            PhotonNetwork.JoinOrCreateRoom(roomName_String, roomOps, TypedLobby.Default);
+            PhotonNetwork.CreateRoom(roomName_String, roomOps, TypedLobby.Default);
         }
 
         public override void OnCreatedRoom()
@@ -80,11 +84,24 @@ namespace moi.photonLobby
             lobbyCanvas.SetActive(false);
 
             Photon_Manager.LogMessage("Joined Room. Room Name : " + roomName.text);
-            //PhotonNetwork.Instantiate("player", Vector3.zero, Quaternion.identity, 0);
+
+            if (string.IsNullOrEmpty(roomName_String))
+            {
+                roomName_String = PhotonNetwork.CurrentRoom.Name;
+            }
+
+            JoinedRoomPanel.SetActive(true);
+            CreateOrJoinedText.SetText("You joined room \n Room name is : " + roomName_String);
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                CreateOrJoinedText.SetText("You created a room. \n Room name is : " + roomName_String);
+            }
         }
 
         #region Update Room
-        // Check if rooms are updated
+        // Check if rooms are updated. This is done automatically from Photon side
+        // All we need to is to make sure that we are in lobby
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
         {
             RemoveRoomListings();
