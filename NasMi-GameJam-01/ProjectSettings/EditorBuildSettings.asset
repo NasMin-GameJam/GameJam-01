@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/_Moi/02_Photon Authentication/Scene/02_Photon Connection.unity
     guid: 0ae24dfe45aa64a69b652c1cafbc2242
   - enabled: 1
-    path: Assets/_Moi/03_Photon LobbyRoom/Scene/03_Photon lobby.unity
+    path: Assets/_Moi/03_Photon LobbyRoom/Scene/03_Photon lobby_Custom Matchmaking.unity
     guid: 0f3f3a38fc9b84d068a20ec51b058bc3
   m_configObjects: {}

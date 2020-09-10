@@ -42,6 +42,12 @@ namespace moi.photonLobby
         {
             validateRoomOptions();
 
+            if (string.IsNullOrEmpty(roomName_String))
+            {
+                Photon_Manager.LogMessage("Room name is empty");
+                return;
+            }
+
             RoomOptions roomOps = new RoomOptions()
             {
                 IsOpen = isPublic,
@@ -74,12 +80,6 @@ namespace moi.photonLobby
 
             roomName_String = roomName.text;
             roomSize_Int = maxNum;
-
-            if (string.IsNullOrEmpty(roomName_String))
-            {
-                Photon_Manager.LogMessage("Room name is empty");
-                return;
-            }
         }
 
         public override void OnCreateRoomFailed(short returnCode, string message)

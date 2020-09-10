@@ -24,6 +24,8 @@ public class Photon_RoomCustomMatch : MonoBehaviourPunCallbacks
     [Header("Player Name Text")]
     public TextMeshProUGUI[] playerNameText;
 
+    public List<string> pNameString;
+
     public void RoomInfos()
     {
         if (PhotonNetwork.InRoom)
@@ -50,10 +52,6 @@ public class Photon_RoomCustomMatch : MonoBehaviourPunCallbacks
     {
         // Need to re-make this.
         // If player left the room, the text update to waiting or something..
-        foreach (Player player in PhotonNetwork.PlayerList)
-        {
-            players.Add(player);
-        }
 
         for (int i = 0; i < playerNameText.Length; i++)
         {
@@ -65,13 +63,39 @@ public class Photon_RoomCustomMatch : MonoBehaviourPunCallbacks
     {
         Debug.Log(newPlayer.ActorNumber);
         //RoomInfos();
-        
+        getNames();
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         Debug.Log(otherPlayer.ActorNumber);
         //RoomInfos();
+        getNames();
+    }
+
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+
+        Player[] players = PhotonNetwork.PlayerList;
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            playerNameText[i].SetText(players[i].NickName);
+        }
+
+        getNames();
+    }
+
+    void getNames()
+    {
+        pNameString = new List<string>();
+
+        foreach(Player p in PhotonNetwork.PlayerList)
+        {
+            pNameString.Add(p.NickName);
+        }
+
         
     }
 }
