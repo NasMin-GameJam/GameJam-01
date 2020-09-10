@@ -9,6 +9,9 @@ A GameJam to learn about PlayFab, Photon, and GitHub.
 
 //======================================================//
 
-A Signup and Login system
+A connecting to Photon Server.
 
-Can be found in folder _Moi/02_Authenticate
+By using PhotonNetwork.connectusingsettings(); we make a connection to the server.
+We check if we are connected by using public override void OnConnectedToMaster()
+
+The script Photon_Manager.cs can be found in folder _Moi/02_Authenticate
