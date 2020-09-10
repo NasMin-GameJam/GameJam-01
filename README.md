@@ -11,4 +11,4 @@ A GameJam to learn about PlayFab, Photon, and GitHub.
 
 A Signup and Login system
 
-Can be found in _Moi folder
+Can be found in folder _Moi/02_Authenticate
