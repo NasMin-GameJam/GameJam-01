@@ -8,7 +8,7 @@ using Photon.Realtime;
 
 namespace moi.photonLobby
 {
-    public class Photon_LobbyAutomaticMatchMaking : MonoBehaviour
+    public class Photon_LobbyAutomaticMatchMaking : MonoBehaviourPunCallbacks
     {
         public GameObject lobbyCanvas;
 
@@ -19,6 +19,26 @@ namespace moi.photonLobby
         [Header("Debugging")]
         public Photon_RoomCustomMatch debugging;
 
+        public void QuickMatch()
+        {
+            RoomOptions roomOptions = new RoomOptions();
+            roomOptions.MaxPlayers = 4;
+            roomOptions.IsOpen = true;
+            roomOptions.IsVisible = true;
 
+            int rand = Random.Range(0, 10000);
+            
+            PhotonNetwork.JoinOrCreateRoom(rand.ToString(), roomOptions, TypedLobby.Default);
+        }
+
+        public override void OnJoinedRoom()
+        {
+            Debug.Log("Photon + PlayFab : Joined Room");
+        }
+
+        public override void OnJoinRoomFailed(short returnCode, string message)
+        {
+            Debug.Log("Photon + PlayFab : " + message);
+        }
     }
 }
