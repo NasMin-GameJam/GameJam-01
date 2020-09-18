@@ -9,12 +9,9 @@ A GameJam to learn about PlayFab, Photon, and GitHub.
 
 //======================================================//
 
-A lobby system
-1. Usually where player wait before the game start.
-2. A place where players can chat with each other.
-3. A place where players can search for rooms/game too
+A room system.
+ 1. Room can be access after the lobby system
+ 2. Either by Created by player or Join a randomly created by other players
+ 3. This system here will be focusing on selecting characters and spawn choosen character by player
 
-This contain Automatic Matchmaking and Custom Matchmaking
-1. Currently making Custom Matchmaking
-
-Can project file be found in _Moi folder/03_Photon_Lobby
+Can project file be found in _Moi folder/04_Photon Inside Room
