@@ -19,7 +19,7 @@ namespace moi.photonLobby
         [Header("Debugging")]
         public Photon_RoomCustomMatch debugging;
 
-        public void QuickMatch()
+        public void OnClick_QuickMatch()
         {
             RoomOptions roomOptions = new RoomOptions();
             roomOptions.MaxPlayers = 4;
@@ -39,6 +39,21 @@ namespace moi.photonLobby
         public override void OnJoinRoomFailed(short returnCode, string message)
         {
             Debug.Log("Photon + PlayFab : " + message);
+        }
+
+        public override void OnCreatedRoom()
+        {
+            base.OnCreatedRoom();
+        }
+
+        public override void OnCreateRoomFailed(short returnCode, string message)
+        {
+            base.OnCreateRoomFailed(returnCode, message);
+        }
+
+        public void OnClick_CancelButton()
+        {
+            PhotonNetwork.LeaveRoom();
         }
     }
 }

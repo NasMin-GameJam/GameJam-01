@@ -5,97 +5,100 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 
-public class Photon_RoomCustomMatch : MonoBehaviourPunCallbacks
+namespace moi.photonLobby
 {
-    [Header("Debugging Purposes")]
-    public bool isOpen;
-    public bool isVisible;
-    public string roomName;
-    public int curPlayerCount;
-    public int maxPlayerCount;
-
-    [Header("Room properties")]
-    [TextArea(10,500)]
-    public string roomProperties;
-
-    [Header("Player List")]
-    public List<Player> players;
-
-    [Header("Player Name Text")]
-    public TextMeshProUGUI[] playerNameText;
-
-    public List<string> pNameString;
-
-    public void RoomInfos()
+    public class Photon_RoomCustomMatch : MonoBehaviourPunCallbacks
     {
-        if (PhotonNetwork.InRoom)
+        [Header("Debugging Purposes")]
+        public bool isOpen;
+        public bool isVisible;
+        public string roomName;
+        public int curPlayerCount;
+        public int maxPlayerCount;
+
+        [Header("Room properties")]
+        [TextArea(10, 500)]
+        public string roomProperties;
+
+        [Header("Player List")]
+        public List<Player> players;
+
+        [Header("Player Name Text")]
+        public TextMeshProUGUI[] playerNameText;
+
+        public List<string> pNameString;
+
+        public void RoomInfos()
         {
-            isOpen = PhotonNetwork.CurrentRoom.IsOpen;
-            isVisible = PhotonNetwork.CurrentRoom.IsVisible;
-            roomName = PhotonNetwork.CurrentRoom.Name;
-            curPlayerCount = PhotonNetwork.CurrentRoom.PlayerCount;
-            maxPlayerCount = PhotonNetwork.CurrentRoom.MaxPlayers;
-            roomProperties = PhotonNetwork.CurrentRoom.ToStringFull();
+            if (PhotonNetwork.InRoom)
+            {
+                isOpen = PhotonNetwork.CurrentRoom.IsOpen;
+                isVisible = PhotonNetwork.CurrentRoom.IsVisible;
+                roomName = PhotonNetwork.CurrentRoom.Name;
+                curPlayerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+                maxPlayerCount = PhotonNetwork.CurrentRoom.MaxPlayers;
+                roomProperties = PhotonNetwork.CurrentRoom.ToStringFull();
 
-            ClearPlayerListing();
+                ClearPlayerListing();
 
-            listPlayers();
-        }
-    }
-
-    void ClearPlayerListing()
-    {
-        players = new List<Player>();
-    }
-
-    void listPlayers()
-    {
-        // Need to re-make this.
-        // If player left the room, the text update to waiting or something..
-
-        for (int i = 0; i < playerNameText.Length; i++)
-        {
-            playerNameText[i].SetText(players[i].NickName);
-        }
-    }
-
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        Debug.Log(newPlayer.ActorNumber);
-        //RoomInfos();
-        getNames();
-    }
-
-    public override void OnPlayerLeftRoom(Player otherPlayer)
-    {
-        Debug.Log(otherPlayer.ActorNumber);
-        //RoomInfos();
-        getNames();
-    }
-
-    public override void OnJoinedRoom()
-    {
-        base.OnJoinedRoom();
-
-        Player[] players = PhotonNetwork.PlayerList;
-
-        for (int i = 0; i < players.Length; i++)
-        {
-            playerNameText[i].SetText(players[i].NickName);
+                listPlayers();
+            }
         }
 
-        getNames();
-    }
-
-    void getNames()
-    {
-        pNameString = new List<string>();
-
-        foreach(Player p in PhotonNetwork.PlayerList)
+        void ClearPlayerListing()
         {
-            pNameString.Add(p.NickName);
+            players = new List<Player>();
         }
 
-        
+        void listPlayers()
+        {
+            // Need to re-make this.
+            // If player left the room, the text update to waiting or something..
+
+            for (int i = 0; i < playerNameText.Length; i++)
+            {
+                playerNameText[i].SetText(players[i].NickName);
+            }
+        }
+
+        public override void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            Debug.Log(newPlayer.ActorNumber);
+            //RoomInfos();
+            getNames();
+        }
+
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            Debug.Log(otherPlayer.ActorNumber);
+            //RoomInfos();
+            getNames();
+        }
+
+        public override void OnJoinedRoom()
+        {
+            base.OnJoinedRoom();
+
+            Player[] players = PhotonNetwork.PlayerList;
+
+            for (int i = 0; i < players.Length; i++)
+            {
+                playerNameText[i].SetText(players[i].NickName);
+            }
+
+            getNames();
+        }
+
+        void getNames()
+        {
+            pNameString = new List<string>();
+
+            foreach (Player p in PhotonNetwork.PlayerList)
+            {
+                pNameString.Add(p.NickName);
+            }
+
+
+        }
     }
 }

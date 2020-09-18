@@ -189,12 +189,18 @@ namespace moi.photonLobby
             roomSize_Int = int.Parse(sizeIn);
         }
 
+        // Use this on the button.
         public void OnClick_JoinLobby()
         {
             if (!PhotonNetwork.InLobby)
             {
                 PhotonNetwork.JoinLobby();
             }
+        }
+
+        public void OnClick_CustomMatch()
+        {
+            OnClick_JoinLobby();
         }
         #endregion
 
