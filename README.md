@@ -14,4 +14,5 @@ A room system.
  2. Either by Created by player or Join a randomly created by other players
  3. This system here will be focusing on selecting characters and spawn choosen character by player
 
+This project file will be using previous 03_Photon Lobby Room folder in order to decrease space used by the Game 
 Can project file be found in _Moi folder/04_Photon Inside Room
