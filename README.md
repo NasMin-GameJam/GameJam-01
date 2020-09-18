@@ -15,6 +15,7 @@ A lobby system
 3. A place where players can search for rooms/game too
 
 This contain Automatic Matchmaking and Custom Matchmaking
-1. Currently making Custom Matchmaking
+1. Custom Matchmaking
+2. Automatic Matchmaking
 
 Can project file be found in _Moi folder/03_Photon_Lobby
