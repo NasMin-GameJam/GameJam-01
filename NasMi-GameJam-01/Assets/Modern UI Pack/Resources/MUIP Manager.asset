@@ -46,7 +46,7 @@ MonoBehaviour:
   selectorHighlightedColor: {r: 0.3254902, g: 0.3529412, b: 0.38431373, a: 1}
   hSelectorInvertAnimation: 0
   hSelectorLoopSelection: 1
-  inputFieldFont: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
+  inputFieldFont: {fileID: 11400000, guid: cafd24613a9acaa4f8385c38075e95c0, type: 2}
   inputFieldFontSize: 28
   inputFieldColor: {r: 1, g: 1, b: 1, a: 1}
   modalWindowTitleFont: {fileID: 11400000, guid: fa328c1ae3ffb6b4583cf371153b0be6,
